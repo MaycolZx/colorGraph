@@ -40,7 +40,8 @@ void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods) {
         ypos >= valorCapY && ypos <= valorCapY + ((heightF * HEIGHT) / 2)) {
       std::cout << "Soy un botón" << std::endl;
       for (size_t i = 0; i < nodosGraphC.size(); i++) {
-        cout << nodosGraphC[i]->name << ' ' << nodosGraphC[i]->color << '\n';
+        cout << "valor: " << nodosGraphC[i]->name << ' '
+             << nodosGraphC[i]->color << '\n';
       }
     }
   }
@@ -97,15 +98,15 @@ void drawLine(float x1, float y1, float x2, float y2) {
 void graphoCaseOne(float adjust) {
   // Draw circles
   drawCircle(-0.5f - adjust, 0.5f, radiusG,
-             nodosGraphC[6]->color); // Círculo rojo-A
+             nodosGraphC[0]->color); // Círculo rojo-A
   drawCircle(0.5f - adjust * 2, 0.5f, radiusG,
-             nodosGraphC[0]->color); // Círculo verde-D
+             nodosGraphC[2]->color); // Círculo verde-D
   drawCircle(-0.5f - adjust, -0.5f, radiusG,
-             nodosGraphC[2]->color); // Círculo azul-B
+             nodosGraphC[1]->color); // Círculo azul-B
   drawCircle(0.5f - adjust * 2, -0.5f, radiusG,
              nodosGraphC[4]->color); // Circulo-C
   drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG,
-             nodosGraphC[5]->color); // Circulo-E
+             nodosGraphC[3]->color); // Circulo-E
 
   // Draw lines between circles
   glColor3f(0.5f, 0.5f, 0.5f); // Color de las líneas (gris)
@@ -133,16 +134,23 @@ void graphoCaseOne(float adjust) {
 
 void graphoCaseTwo(float adjust) {
   //
-  drawCircle(-0.5f - adjust, 0.5f, radiusG, 1);    // Círculo rojo A
-  drawCircle(0.5f - adjust * 2, 0.5f, radiusG, 0); // Círculo verde D
+  drawCircle(-0.5f - adjust, 0.5f, radiusG,
+             nodosGraphC[0]->color); // Círculo rojo A
+  drawCircle(0.5f - adjust * 2, 0.5f, radiusG,
+             nodosGraphC[3]->color); // Círculo verde D
   // Falta la linea de D-F
-  drawCircle(0.5f - radiusG, 0.5f, radiusG, 0);  // Circulo-E-
-  drawCircle(0.5f - radiusG, -0.5f, radiusG, 1); // Circulo-F
+  drawCircle(0.5f - radiusG, 0.5f, radiusG,
+             nodosGraphC[4]->color); // Circulo-E-
+  drawCircle(0.5f - radiusG, -0.5f, radiusG,
+             nodosGraphC[5]->color); // Circulo-F
   //
-  drawCircle(-0.5f - adjust, -0.5f, radiusG, 0);    // Circulo-B-
-  drawCircle(0.5f - adjust * 2, -0.5f, radiusG, 1); // Circulo-C
+  drawCircle(-0.5f - adjust, -0.5f, radiusG,
+             nodosGraphC[1]->color); // Circulo-B-
+  drawCircle(0.5f - adjust * 2, -0.5f, radiusG,
+             nodosGraphC[2]->color); // Circulo-C
   //
-  drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG, 0); // Circulo-G
+  drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG,
+             nodosGraphC[6]->color); // Circulo-G
 
   glColor3f(0.5f, 0.5f, 0.5f);
   // Línea del primer círculo al segundo círculo
