@@ -16,16 +16,8 @@ const int num_segments = 50;
 const float TEXT_SIZE = 50.0f;
 
 vector<CNode *> nodosGraphC;
-// const float RECT_WIDTH = 100.0f;
-// const float RECT_HEIGHT = 50.0f;
-// const float positionInit[2] = {-0.95, -0.85};
-// void drawText(float x, float y, const char *text) {
-//   glRasterPos2f(x, y);
-//   while (*text) {
-//     glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *text);
-//     text++;
-//   }
-// }
+float colorRGB[3][3] = {
+    {1.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 1.0f}};
 
 void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods) {
   float heightF = 0.1f, widthF = 0.5f;
@@ -70,11 +62,11 @@ void drawRectangle() {
   glEnd();
 }
 
-void drawCircle(float cx, float cy, float r, float colorR, float colorG,
-                float colorB) {
+void drawCircle(float cx, float cy, float r, int colorParam) {
   glLineWidth(1); // Establecer el grosor de la línea
   glBegin(GL_POLYGON);
-  glColor3f(colorR, colorG, colorB); // Color interior del círculo
+  glColor3f(colorRGB[colorParam - 1][0], colorRGB[colorParam - 1][1],
+            colorRGB[colorParam - 1][2]); // Color interior del círculo
   for (int i = 0; i < num_segments; i++) {
     float theta = 2.0f * 3.1415926f * float(i) / float(num_segments);
     float x = r * cosf(theta);
@@ -104,15 +96,16 @@ void drawLine(float x1, float y1, float x2, float y2) {
 
 void graphoCaseOne(float adjust) {
   // Draw circles
-  drawCircle(-0.5f - adjust, 0.5f, radiusG, 1.0f, 0.0f,
-             0.0f); // Círculo rojo-A
-  drawCircle(0.5f - adjust * 2, 0.5f, radiusG, 0.0f, 1.0f,
-             0.0f); // Círculo verde-D
-  drawCircle(-0.5f - adjust, -0.5f, radiusG, 0.0f, 0.0f,
-             1.0f); // Círculo azul-B
-  drawCircle(0.5f - adjust * 2, -0.5f, radiusG, 1.0f, 0.50f, 0.0f); // Circulo-C
-  drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG, 1.0f, 0.0f,
-             0.0f); // Circulo-E
+  drawCircle(-0.5f - adjust, 0.5f, radiusG,
+             nodosGraphC[6]->color); // Círculo rojo-A
+  drawCircle(0.5f - adjust * 2, 0.5f, radiusG,
+             nodosGraphC[0]->color); // Círculo verde-D
+  drawCircle(-0.5f - adjust, -0.5f, radiusG,
+             nodosGraphC[2]->color); // Círculo azul-B
+  drawCircle(0.5f - adjust * 2, -0.5f, radiusG,
+             nodosGraphC[4]->color); // Circulo-C
+  drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG,
+             nodosGraphC[5]->color); // Circulo-E
 
   // Draw lines between circles
   glColor3f(0.5f, 0.5f, 0.5f); // Color de las líneas (gris)
@@ -140,19 +133,16 @@ void graphoCaseOne(float adjust) {
 
 void graphoCaseTwo(float adjust) {
   //
-  drawCircle(-0.5f - adjust, 0.5f, radiusG, 1.0f, 0.0f,
-             0.0f); // Círculo rojo A
-  drawCircle(0.5f - adjust * 2, 0.5f, radiusG, 0.0f, 0.0f,
-             0.0f); // Círculo verde D
+  drawCircle(-0.5f - adjust, 0.5f, radiusG, 1);    // Círculo rojo A
+  drawCircle(0.5f - adjust * 2, 0.5f, radiusG, 0); // Círculo verde D
+  // Falta la linea de D-F
+  drawCircle(0.5f - radiusG, 0.5f, radiusG, 0);  // Circulo-E-
+  drawCircle(0.5f - radiusG, -0.5f, radiusG, 1); // Circulo-F
   //
-  drawCircle(0.5f - radiusG, 0.5f, radiusG, 0.0f, 0.0f, 1.0f);  // Circulo-E-
-  drawCircle(0.5f - radiusG, -0.5f, radiusG, 1.0f, 0.0f, 0.0f); // Circulo-F
+  drawCircle(-0.5f - adjust, -0.5f, radiusG, 0);    // Circulo-B-
+  drawCircle(0.5f - adjust * 2, -0.5f, radiusG, 1); // Circulo-C
   //
-  drawCircle(-0.5f - adjust, -0.5f, radiusG, 0.0f, 1.0f, 0.0f);    // Circulo-B-
-  drawCircle(0.5f - adjust * 2, -0.5f, radiusG, 1.0f, 0.0f, 0.0f); // Circulo-C
-  //
-  drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG, 0.0f, 0.0f,
-             1.0f); // Circulo-G
+  drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG, 0); // Circulo-G
 
   glColor3f(0.5f, 0.5f, 0.5f);
   // Línea del primer círculo al segundo círculo
