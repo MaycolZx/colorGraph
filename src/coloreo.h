@@ -46,6 +46,13 @@ struct CEdge {
 
 class CGraph {
 public:
+  CNode *busquedaNode(char algo) {
+    for (size_t i = 0; i < nodos1.size(); i++) {
+      if (algo == nodos1[i]->name) {
+        return nodos1[i];
+      }
+    }
+  }
   bool InsertNode(char name, int x, int y, int color) {
     nodos1.push_back(new CNode(name, x, y, color));
     return true;

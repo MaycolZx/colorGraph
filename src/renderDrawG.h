@@ -95,18 +95,36 @@ void drawLine(float x1, float y1, float x2, float y2) {
   glEnd();
 }
 
-void graphoCaseOne(float adjust) {
-  // Draw circles
-  drawCircle(-0.5f - adjust, 0.5f, radiusG,
-             nodosGraphC[0]->color); // Círculo rojo-A
-  drawCircle(0.5f - adjust * 2, 0.5f, radiusG,
-             nodosGraphC[2]->color); // Círculo verde-D
-  drawCircle(-0.5f - adjust, -0.5f, radiusG,
-             nodosGraphC[1]->color); // Círculo azul-B
-  drawCircle(0.5f - adjust * 2, -0.5f, radiusG,
-             nodosGraphC[4]->color); // Circulo-C
-  drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG,
-             nodosGraphC[3]->color); // Circulo-E
+void graphoCaseOne(float adjust, int valorResRec) {
+  if (valorResRec == 0) {
+
+    // Draw circles
+    drawCircle(-0.5f - adjust, 0.5f, radiusG,
+               nodosGraphC[0]->color); // Círculo rojo-A
+    drawCircle(0.5f - adjust * 2, 0.5f, radiusG,
+               nodosGraphC[2]->color); // Círculo verde-D
+    // drawCircle(0.5f - adjust * 2, 0.5f, radiusG, nodosGraphC[2]->color);
+    drawCircle(-0.5f - adjust, -0.5f, radiusG,
+               nodosGraphC[1]->color); // Círculo azul-B
+    drawCircle(0.5f - adjust * 2, -0.5f, radiusG,
+               nodosGraphC[4]->color); // Circulo-C
+    // drawCircle(0.5f - adjust * 2, 0.5f, radiusG, nodosGraphC[2]->color);
+
+    drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG,
+               nodosGraphC[3]->color); // Circulo-E
+  } else {
+    // Draw circles
+    drawCircle(-0.5f - adjust, 0.5f, radiusG,
+               nodosGraphC[0]->color); // Círculo rojo-A
+    drawCircle(0.5f - adjust * 2, 0.5f, radiusG,
+               nodosGraphC[3]->color); // Círculo verde-D
+    drawCircle(-0.5f - adjust, -0.5f, radiusG,
+               nodosGraphC[1]->color); // Círculo azul-B
+    drawCircle(0.5f - adjust * 2, -0.5f, radiusG,
+               nodosGraphC[2]->color); // Circulo-C
+    drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG,
+               nodosGraphC[4]->color); // Circulo-E
+  }
 
   // Draw lines between circles
   glColor3f(0.5f, 0.5f, 0.5f); // Color de las líneas (gris)
@@ -132,26 +150,45 @@ void graphoCaseOne(float adjust) {
            0.3f + radiusG + adjust, -0.3f + radiusG + adjust);
 }
 
-void graphoCaseTwo(float adjust) {
+void graphoCaseTwo(float adjust, int valorResRec) {
   //
-  drawCircle(-0.5f - adjust, 0.5f, radiusG,
-             nodosGraphC[0]->color); // Círculo rojo A
-  drawCircle(0.5f - adjust * 2, 0.5f, radiusG,
-             nodosGraphC[3]->color); // Círculo verde D
-  // Falta la linea de D-F
-  drawCircle(0.5f - radiusG, 0.5f, radiusG,
-             nodosGraphC[4]->color); // Circulo-E-
-  drawCircle(0.5f - radiusG, -0.5f, radiusG,
-             nodosGraphC[5]->color); // Circulo-F
-  //
-  drawCircle(-0.5f - adjust, -0.5f, radiusG,
-             nodosGraphC[1]->color); // Circulo-B-
-  drawCircle(0.5f - adjust * 2, -0.5f, radiusG,
-             nodosGraphC[2]->color); // Circulo-C
-  //
-  drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG,
-             nodosGraphC[6]->color); // Circulo-G
-
+  if (valorResRec == 0) {
+    drawCircle(-0.5f - adjust, 0.5f, radiusG,
+               nodosGraphC[6]->color); // Círculo rojo A
+    drawCircle(0.5f - adjust * 2, 0.5f, radiusG,
+               nodosGraphC[0]->color); // Círculo verde D
+    // Falta la linea de D-F
+    drawCircle(0.5f - radiusG, 0.5f, radiusG,
+               nodosGraphC[4]->color); // Circulo-E-
+    drawCircle(0.5f - radiusG, -0.5f, radiusG,
+               nodosGraphC[1]->color); // Circulo-F
+    //
+    drawCircle(-0.5f - adjust, -0.5f, radiusG,
+               nodosGraphC[2]->color); // Circulo-B-
+    drawCircle(0.5f - adjust * 2, -0.5f, radiusG,
+               nodosGraphC[3]->color); // Circulo-C
+    //
+    drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG,
+               nodosGraphC[5]->color); // Circulo-G
+  } else {
+    drawCircle(-0.5f - adjust, 0.5f, radiusG,
+               nodosGraphC[0]->color); // Círculo rojo A
+    drawCircle(0.5f - adjust * 2, 0.5f, radiusG,
+               nodosGraphC[3]->color); // Círculo verde D
+    // Falta la linea de D-F
+    drawCircle(0.5f - radiusG, 0.5f, radiusG,
+               nodosGraphC[4]->color); // Circulo-E-
+    drawCircle(0.5f - radiusG, -0.5f, radiusG,
+               nodosGraphC[5]->color); // Circulo-F
+    //
+    drawCircle(-0.5f - adjust, -0.5f, radiusG,
+               nodosGraphC[1]->color); // Circulo-B-
+    drawCircle(0.5f - adjust * 2, -0.5f, radiusG,
+               nodosGraphC[2]->color); // Circulo-C
+    //
+    drawCircle(0.5f + adjust, -0.5f + 0.5f, radiusG,
+               nodosGraphC[6]->color); // Circulo-G
+  }
   glColor3f(0.5f, 0.5f, 0.5f);
   // Línea del primer círculo al segundo círculo
   drawLine(-0.3 - radiusG - adjust, 0.3 + 2 * radiusG, -0.3 - radiusG,
@@ -163,12 +200,16 @@ void graphoCaseTwo(float adjust) {
   drawLine(-0.3f, 0.3f + radiusG, -0.3f, -0.3f - radiusG);
   drawLine(-0.3f - radiusG - adjust, -0.3f - 2 * radiusG, -0.3f - radiusG,
            -0.3f - 2 * radiusG);
+
   drawLine(-0.3 + radiusG, 0.3 + 2 * radiusG, 0.3, 0.3 + 2 * radiusG);
   // drawLine(-0.3 + radiusG, 0.3 + 2 * radiusG, -0.3, 0.3 + 2 * radiusG);
   //
   drawLine(0.3f + radiusG, 0.3f + radiusG, 0.3f + radiusG, -0.3f - radiusG);
   drawLine(0.3f, -0.3f - 2 * radiusG, 0.3f - radiusG - adjust,
            -0.3f - 2 * radiusG);
+  drawLine(0.3f, -0.3f - 2 * radiusG, 0.3f - radiusG - adjust,
+           0.3f + 2 * radiusG);
+
   ///
   drawLine(0.3f + 2 * radiusG, 0.3f + 2 * radiusG, 0.3f + radiusG + adjust,
            -0.3f - radiusG + adjust);
@@ -179,7 +220,7 @@ void graphoCaseTwo(float adjust) {
            0.3f + radiusG + adjust, -0.3f + adjust - radiusG);
 }
 
-int renderGraphColor(int changeGraph, vector<CNode *> nodosC) {
+int renderGraphColor(int changeGraph, vector<CNode *> nodosC, int valorResRec) {
   GLFWwindow *window;
 
   if (!glfwInit()) {
@@ -202,9 +243,9 @@ int renderGraphColor(int changeGraph, vector<CNode *> nodosC) {
     drawRectangle();
 
     if (changeGraph == 1) {
-      graphoCaseOne(0.2f);
+      graphoCaseOne(0.2f, valorResRec);
     } else {
-      graphoCaseTwo(0.4f);
+      graphoCaseTwo(0.4f, valorResRec);
     }
     // Draw text
     glColor3f(1.0f, 1.0f, 1.0f); // White color
