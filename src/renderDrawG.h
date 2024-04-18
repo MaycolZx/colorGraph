@@ -21,7 +21,7 @@ float colorRGB[3][3] = {
 
 void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods) {
   float heightF = 0.1f, widthF = 0.5f;
-  float positionInit[2] = {-0.95, -0.85};
+  float positionInit[2] = {-0.95, -0.90};
   float valorCapX, valorCapY;
   if (positionInit[0] < 0) {
     valorCapX = WIDTH + positionInit[0] * WIDTH;
@@ -49,7 +49,7 @@ void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods) {
 
 void drawRectangle() {
   float heightF = 0.1f, widthF = 0.5f;
-  float positionInit[2] = {-0.95, -0.85};
+  float positionInit[2] = {-0.90, -0.80};
   glBegin(GL_QUADS);
   glColor3f(0.5f, 0.5f, 0.5f); // Color gris
   // glVertex2f(0, 0);
